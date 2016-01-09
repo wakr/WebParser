@@ -1,20 +1,23 @@
-from HTML.HTMLParser import HtmlParser
-from HTTP.HTTPRequester import HttpRequester
+from Thread.Threader import Threader
 
 
 def main():
 
-    address = input("Give a webpage: ")
+    webpages = []
+    iterations = input("How many webpages you want to parse: ")
 
-    try:
-        res = HttpRequester.response_of(address)
-    except:
-        print("Requested URL is invalid!")
-        return
-    parsed = HtmlParser.get_parsed_of(res)
+    ask_webpages(iterations, webpages)
 
-    for line in parsed:
-        print(line)
+    t = Threader()
+    results = t.execute(webpages)
+
+    print(results)
+
+
+def ask_webpages(iterations, webpages):
+    for i in range(int(iterations)):
+        address = input("Give a webpage: ")
+        webpages.append(address)
 
 
 if __name__ == '__main__':
