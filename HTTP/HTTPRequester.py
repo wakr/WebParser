@@ -7,4 +7,4 @@ class HttpRequester:
 
     @staticmethod
     def response_of(address):
-        return urllib.request.urlopen("http://" + address).read()
+        return urllib.request.urlopen("http://" + address).read().decode('utf-8')
